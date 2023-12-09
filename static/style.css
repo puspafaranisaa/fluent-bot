@@ -1,0 +1,195 @@
+:root {
+    --color-black-bg: #282C35;
+    --color-main: #FFA41B;
+    --color-primary: blue;
+    --color-secondary: #F86F03;
+}
+
+* {
+    font-size: 1.3vw;
+    font-family: "Poppins", sans-serif;
+    margin: 0; 
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+.card {
+    width: 70%;
+    margin: 20px auto;
+    background-color: var(--color-black-bg);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card__content {
+    padding: 1rem;
+}
+
+#header {
+    background-color: var(--color-black-bg);
+    border-bottom: .75px solid rgb(171, 171, 171);
+    display: flex;
+    align-items: center;
+}
+
+#header img {
+    margin-left: 1vw;
+    max-width: 30%; /* Sesuaikan persentase sesuai kebutuhan */
+    height: auto;
+    transform-origin: left center;
+}
+
+
+#header h1 {
+    font-size: 2vw;
+    font-family: "Poppins", sans-serif; 
+    color: var(--color-main);
+    padding: 1vw;
+}
+
+#message-section {
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    height: 32vw;
+    padding: 1rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbarBG) var(--thumbBG);
+}
+
+#message-section #bot,
+#message-section #user {
+    min-height: 1.5vw;
+    border: 1px solid #777;
+    background-color: white;
+    border-radius: 0 15px 15px 15px;
+}
+
+#message-section #user {
+    color: white;
+}
+
+#message-section #user #user-response {
+    color: rgb(255, 255, 255);
+}
+
+.card #message-section .message {
+    color: black;
+    padding: 10px;
+    line-height: 2vw;
+    max-width: 100%;
+    word-wrap: break-word;
+    z-index: 2;
+}
+
+#input-section {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+#input-section input {
+    color: black;
+    min-width: 0.5vw;
+    outline: none;
+    width: 80vw;
+    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    /* border-bottom: 0.1vw solid black; */
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.input-section__button {
+    font-size: .85rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    padding: .5rem 1rem;
+    background-color: var(--color-main);
+    color: black;
+    font-weight: bold;
+}
+
+.input-section__button:hover {
+    background-color: #FFA41B;
+}
+
+.send {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin-left: auto; 
+    padding: 0;
+    position: relative;
+    outline: none;
+}
+
+.send .circle {
+    position: relative;
+    width: 4.8vw;
+    height: 4.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send .circle i {
+    font-size: 3vw;
+    margin-left: 1vw;
+    margin-top: 1vw;
+}
+
+.profile-icon-user {
+    width: 2vw; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    height: 2vw;
+    border-radius: 50%; /* Agar ikon bulat */
+    margin-right: 0.5vw; /* Sesuaikan margin sesuai kebutuhan */
+    object-fit: cover; /* Pastikan ikon profil menyesuaikan ukuran tanpa merusak aspek rasio */
+
+    /* Gaya tambahan untuk mempercantik ikon profil */
+    border: 2px solid var(--color-primary); /* Tambahkan border */
+    transition: transform 0.3s ease-in-out; /* Efek transisi pada hover */
+}
+
+.profile-icon-bot {
+    width: 2vw; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    height: 2vw;
+    border-radius: 50%; /* Agar ikon bulat */
+    margin-right: 0.5vw; /* Sesuaikan margin sesuai kebutuhan */
+    object-fit: cover; /* Pastikan ikon profil menyesuaikan ukuran tanpa merusak aspek rasio */
+
+    /* Gaya tambahan untuk mempercantik ikon profil */
+    border: 2px solid var(--color-secondary); /* Tambahkan border */
+    transition: transform 0.3s ease-in-out; /* Efek transisi pada hover */
+}
+
+/* Efek transisi pada hover */
+.profile-icon-user:hover {
+    transform: scale(1.2); /* Perbesar ikon saat dihover */
+}
+
+.profile-icon-bot:hover {
+    transform: scale(1.2); /* Perbesar ikon saat dihover */
+}
+
+/* Gaya tambahan untuk penataan pesan */
+#message-section .message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vw; /* Sesuaikan margin sesuai kebutuhan */
+}
+
+#message-section #user #user-response {
+    border-radius: 0 15px 15px 15px;
+}
+
+#message-section #bot #bot-response {
+    border-radius: 15px 0 15px 15px;
+}
+
