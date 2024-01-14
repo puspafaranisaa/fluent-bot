@@ -2,21 +2,25 @@ from flask import Flask, render_template, request, jsonify
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics.pairwise import cosine_similarity
+from imblearn.over_sampling import RandomOverSampler
 import pandas as pd
-import os
 
 app = Flask(__name__)
 
 def train_chatbot(dataset_path):
     df = pd.read_csv(dataset_path)
 
-    # Menggunakan TfidfVectorizer untuk membuat matriks TF-IDF dari dataset
+    # Applying oversampling to handle class imbalance
+    oversampler = RandomOverSampler(random_state=42)
+    X_resampled, y_resampled = oversampler.fit_resample(df['questions'].values.reshape(-1, 1), df['category'])
+
+    # Menggunakan TfidfVectorizer untuk membuat matriks TF-IDF dari dataset oversampled
     vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(df['questions'].values.astype('U'))
+    tfidf_matrix = vectorizer.fit_transform(X_resampled.flatten())
 
     # Menyiapkan model klasifikasi Naive Bayes
     classifier = MultinomialNB()
-    classifier.fit(tfidf_matrix, df['category'])
+    classifier.fit(tfidf_matrix, y_resampled)
 
     return df, vectorizer, classifier
 
@@ -41,7 +45,7 @@ def get_response(user_input, df, vectorizer, classifier):
     response = filtered_df['answer'].iloc[max_similarity_index]
     return response
 
-# Gantilah 'dataset.csv' dengan nama file CSV dataset Anda
+# Gantilah 'knowledgebase.csv' dengan nama file CSV dataset Anda
 dataset_path = 'knowledgebase.csv'
 df, vectorizer, classifier = train_chatbot(dataset_path)
 
